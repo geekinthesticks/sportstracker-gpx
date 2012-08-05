@@ -17,7 +17,8 @@ The script is based on one originally developed by Sergey Astanin
 
 
 ** Usage.
-#+begin_example
+
+#+BEGIN_SRC sh
 usage: sportstracker.py [action] [options] track.gpx
 
 Analyze GPS track and plot elevation and velocity profiles.
@@ -51,4 +52,4 @@ Options:
 -t tzname     use local timezone tzname (e.g. 'Europe/Moscow')
 -n N_points   reduce number of points in the plot to approximately N_points
 
-#+end_example
+#+END_SRC
