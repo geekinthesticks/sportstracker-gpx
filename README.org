@@ -1,4 +1,51 @@
-sportstracker-gpx
-=================
+* sportstracker-gpx
+I use the web service at http://www.sports-tracker.com to record my
+cycle rides. Whilst the site offers many features, I like to be able
+to export and work on the data myself. Sports-tracker.com will let you
+export individual workouts as a gpx file. However, the data has a
+slightly non standard date-stamp format and if you are using a heart
+rate monitor, the exported data contains the heart rate data as a gpx
+extension.
 
-Export data from gpx files downloaded from the sports-tracker.com website
+sportstracker.py can export your data from the gpx file in a number of
+formats and can create charts from the data using gnuplot. The script
+is written in python. The script requires the [[http://pytz.sourceforge.net/][pytz]] library to provide
+time zone support.
+
+The script is based on one originally developed by Sergey Astanin
+<s.astanin@gmail.com>.
+
+
+** Usage.
+usage: sportstracker.py [action] [options] track.gpx
+
+Analyze GPS track and plot elevation and velocity profiles.
+
+Features:
+	* using haversine formula to calculate distances (spherical Earth)
+	* support of multi-segment (discontinuous) tracks
+	* gnuplot support:
+		- generate plots if gnuplot.py is available
+		- generate gnuplot script if gnuplot.py is not available
+		- plot interactively and plot-to-file modes
+	* Google Chart API support:
+        - print URL or the plot
+	* tabular track profile data can be generated
+	* metric and English units
+	* timezone support
+
+Actions:
+-g            plot using gnuplot.py
+--gprint      print gnuplot script to standard output
+--google      print Google Chart URL
+--table       print data table (default)
+--orgtable    print data table in Emacs org-mode format.
+
+Options:
+-h, --help    print this message
+-E            use English units (metric units used by default)
+-x var        plot var = { time | distance } against x-axis
+-y var        plot var = { elevation | velocity | heartrate } against y-axis
+-o imagefile  save plot to image file (supported: PNG, JPG, EPS, SVG)
+-t tzname     use local timezone tzname (e.g. 'Europe/Moscow')
+-n N_points   reduce number of points in the plot to approximately N_points
